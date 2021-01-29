@@ -1,0 +1,40 @@
+﻿<Page x:Class="MedBd.Items"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MedBd"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage">
+
+    <Grid>
+        <Label Content="ПОИСКОВИК" HorizontalAlignment="Left" Margin="356,263,0,0" VerticalAlignment="Top"/>
+        <Frame Name ="MainFrame" Content=""></Frame>
+        <ListView Name="FileInfoView" HorizontalAlignment="Left" Height="382" Margin="185,58,0,0" VerticalAlignment="Top" Width="605">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Номер товара" DisplayMemberBinding ="{Binding Path = NumberItems}"/>
+
+                    <GridViewColumn Header="Название" DisplayMemberBinding ="{Binding Path = NameItems}"/>
+                    <GridViewColumn Header="Описание" DisplayMemberBinding ="{Binding Path = Discription}"/>
+                    <GridViewColumn Header="Категория" DisplayMemberBinding ="{Binding Path = NumberCat}"/>
+                    <GridViewColumn Header="Аптека" DisplayMemberBinding ="{Binding Path = NumberFarm}"/>
+
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="63,87,0,0" VerticalAlignment="Top" Width="75" Click="AddNew_Btn" />
+        
+        <Button Content="Изменить" HorizontalAlignment="Left" Margin="63,111,0,0" VerticalAlignment="Top" Width="75" Click="Edit"/>
+        
+        <Button Content="Удалить" HorizontalAlignment="Left" Margin="63,136,0,0" VerticalAlignment="Top" Width="75" Click="Delete"/>
+        <Button Content="Refresh" HorizontalAlignment="Left" Margin="63,197,0,0" VerticalAlignment="Top" Width="75" Click="RefreshOrb" />
+        <TextBox Name="catsearch" MaxLength="4" HorizontalAlignment="Left" Height="23" Margin="115,245,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23" TextChanged="FindCat" RenderTransformOrigin="0.471,0.462"/>
+
+
+
+        <Button Content="На Главную страницу" HorizontalAlignment="Left" Margin="10,354,0,0" VerticalAlignment="Top" Width="151" Click="BackToChoice"/>
+
+    </Grid>
+</Page>

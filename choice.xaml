@@ -1,0 +1,20 @@
+﻿<Page x:Class="MedBd.choice"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MedBd"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="choice">
+
+    <Grid>
+        <ComboBox Name="ChoiceList" Height="30" VerticalAlignment="Top" SelectionChanged="ChoiceList_SelectionChanged">
+            <TextBlock>Items</TextBlock>
+            <TextBlock>Farmacy</TextBlock>
+            <TextBlock>Category</TextBlock>
+            <TextBlock>Orders</TextBlock>
+        </ComboBox>
+
+    </Grid>
+</Page>
