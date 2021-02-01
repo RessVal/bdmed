@@ -40,11 +40,26 @@ namespace MedBd
         {
             InitializeComponent();
 
+            if (!MainWindow.admin)
+            {
+
+
+                delete.Visibility = Visibility.Hidden;
+                add.Visibility = Visibility.Hidden;
+                edit.Visibility = Visibility.Hidden;
+            }
+
+
             OrdersList.Clear(); // Очистка окна вывода
 
             string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=BDmed;Integrated Security=True"; // куда подкл
 
             string sqlExpression = "SELECT * FROM Orders"; //Запрос
+            if (!MainWindow.admin) 
+            {
+                sqlExpression = "SELECT * FROM Orders WHERE Login ='" + MainWindow.mainlogin + "'"; //Запрос
+            }
+            
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -79,15 +94,15 @@ namespace MedBd
             {
                 EditOrd editord = new EditOrd { frame = this.frame }; //Передача в presenter чтобы не был пустым
 
-                //editor.edita.Content = Convert.ToString(FileInfoView.SelectedIndex);
+
                 editord.txdate.Text = OrdersList[FileInfoView.SelectedIndex].DateDelivery;
                 editord.txlog.Text = OrdersList[FileInfoView.SelectedIndex].Login;
                 editord.txadr.Text = OrdersList[FileInfoView.SelectedIndex].Adress;
                 editord.txitems.Text = Convert.ToString(OrdersList[FileInfoView.SelectedIndex].NumberItems);
 
-                //editor.edita.Content = Convert.ToString(FileInfoView.SelectedIndex);
+
                 EditOrd.index = FileInfoView.SelectedIndex;
-                //EditOrd.EditOrdInfo.NumberOrd = OrdersList[FileInfoView.SelectedIndex].NumberOrd;
+
                 EditOrd.EditOrdInfo.DateDelivery = OrdersList[FileInfoView.SelectedIndex].DateDelivery;
                 EditOrd.EditOrdInfo.Login = OrdersList[FileInfoView.SelectedIndex].Login;
                 EditOrd.EditOrdInfo.Adress = OrdersList[FileInfoView.SelectedIndex].Adress;
@@ -141,16 +156,32 @@ namespace MedBd
 
         }
 
+        string log = MainWindow.mainlogin;
+        
+
         private void FindCat(object sender, TextChangedEventArgs e)
         {
-            FindLike("SELECT * FROM Orders WHERE NumberOrd LIKE '" + ordsearch.Text + "%'");
+            if (MainWindow.admin)
+            {
+                FindLike("SELECT * FROM Orders WHERE NumberOrd LIKE '" + ordsearch.Text + "%'");
+            }
+            else
+            {
+
+            }
+            
+
+            
         }
+
+
+        
 
         private void RefreshOrb(object sender, RoutedEventArgs e)
         {
-            Items item = new Items { frame = this.frame }; //Передача в presenter чтобы не был пустым
+            Orders ord = new Orders { frame = this.frame }; //Передача в presenter чтобы не был пустым
 
-            frame.Content = item;
+            frame.Content = ord;
         }
 
         private void BackToChoice(object sender, RoutedEventArgs e)

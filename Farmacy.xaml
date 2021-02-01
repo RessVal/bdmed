@@ -23,11 +23,11 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button Content="Добавить" HorizontalAlignment="Left" Margin="63,87,0,0" VerticalAlignment="Top" Width="75" Click="AddNew_Btn" />
+        <Button Content="Добавить" Name="add" HorizontalAlignment="Left" Margin="63,87,0,0" VerticalAlignment="Top" Width="75" Click="AddNew_Btn" />
         
-        <Button Content="Изменить" HorizontalAlignment="Left" Margin="63,111,0,0" VerticalAlignment="Top" Width="75" Click="Edit"/>
+        <Button Content="Изменить" Name="edit" HorizontalAlignment="Left" Margin="63,111,0,0" VerticalAlignment="Top" Width="75" Click="Edit"/>
         
-        <Button Content="Удалить" HorizontalAlignment="Left" Margin="63,136,0,0" VerticalAlignment="Top" Width="75" Click="Delete"/>
+        <Button Content="Удалить" Name="delete" HorizontalAlignment="Left" Margin="63,136,0,0" VerticalAlignment="Top" Width="75" Click="Delete"/>
         <Button Content="Refresh" HorizontalAlignment="Left" Margin="63,197,0,0" VerticalAlignment="Top" Width="75" Click="RefreshOrb" />
         <TextBox Name="farmsearch" MaxLength="4" HorizontalAlignment="Left" Height="23" Margin="115,245,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="23" TextChanged="FindCat" RenderTransformOrigin="0.471,0.462"/>
 

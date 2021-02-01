@@ -25,8 +25,8 @@ namespace MedBd
 
         public Frame frame;
 
-
-
+        public static bool admin = false;
+        public static string mainlogin = "";
         public MainWindow()
         {
             InitializeComponent();

@@ -35,10 +35,26 @@ namespace MedBd
         }
 
         public static ObservableCollection<ItemsInfo> ItemsList = new ObservableCollection<ItemsInfo>();
-
+        public static int itemid = 0;
         public Items()
         {
+
             InitializeComponent();
+
+            if (!MainWindow.admin)
+            {
+
+
+                delete.Visibility = Visibility.Hidden;
+                add.Visibility = Visibility.Hidden;
+                edit.Visibility = Visibility.Hidden;
+
+            }
+            else
+            {
+                b.Visibility = Visibility.Hidden;
+            }
+
 
             ItemsList.Clear(); // Очистка окна вывода
 
@@ -53,8 +69,7 @@ namespace MedBd
 
                 if (reader.HasRows) // если есть данные
                 {
-                    // выводим названия столбцов
-                    //Console.WriteLine("{0}\t{1}\t{2}", reader.GetName(0), reader.GetName(1), reader.GetName(2));
+
 
                     while (reader.Read()) // построчно считываем данные
                     {
@@ -163,28 +178,45 @@ namespace MedBd
 
         private void Delete(object sender, RoutedEventArgs e)
         {
-
-            string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=BDmed;Integrated Security=True";
-            string sqlExpression = "DELETE  FROM Items WHERE NumberItems=" + ItemsList[FileInfoView.SelectedIndex].NumberItems;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                connection.Open();
-                SqlCommand command = new SqlCommand(sqlExpression, connection);
-                int number = command.ExecuteNonQuery();
-                if (number == 0)
+                string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=BDmed;Integrated Security=True";
+                string sqlExpression = "DELETE  FROM Items WHERE NumberItems=" + ItemsList[FileInfoView.SelectedIndex].NumberItems;
+                using (SqlConnection connection = new SqlConnection(connectionString))
                 {
-                    MessageBox.Show("Объект не найден");
-                }
-                else
-                {
-                    MessageBox.Show("Удалено объектов: " + number);
-                    ItemsList.RemoveAt(FileInfoView.SelectedIndex);
+                    connection.Open();
+                    SqlCommand command = new SqlCommand(sqlExpression, connection);
+                    int number = command.ExecuteNonQuery();
+                    if (number == 0)
+                    {
+                        MessageBox.Show("Объект не найден");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Удалено объектов: " + number);
+                        ItemsList.RemoveAt(FileInfoView.SelectedIndex);
+                    }
                 }
             }
+            catch (SqlException)
+            {
+                MessageBox.Show("Нельзя удалить товар , который заказан");
+            }
+            
 
 
 
 
+
+        }
+
+        private void Buy(object sender, RoutedEventArgs e)
+        {
+
+            buy b = new buy { frame = this.frame }; 
+
+            frame.Content = b;
+            buy.BuyInfo.NumberItems = ItemsList[FileInfoView.SelectedIndex].NumberItems;
 
         }
     }

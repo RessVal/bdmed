@@ -38,6 +38,16 @@ namespace MedBd
         {
             InitializeComponent();
 
+            if (!MainWindow.admin)
+            {
+
+
+                delete.Visibility = Visibility.Hidden;
+                add.Visibility = Visibility.Hidden;
+                edit.Visibility = Visibility.Hidden;
+            }
+
+
             FarmList.Clear(); // Очистка окна вывода
 
             string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=BDmed;Integrated Security=True"; // куда подкл
@@ -51,8 +61,7 @@ namespace MedBd
 
                 if (reader.HasRows) // если есть данные
                 {
-                    // выводим названия столбцов
-                    //Console.WriteLine("{0}\t{1}\t{2}", reader.GetName(0), reader.GetName(1), reader.GetName(2));
+
 
                     while (reader.Read()) // построчно считываем данные
                     {
@@ -76,12 +85,12 @@ namespace MedBd
             {
                 EditFarm editor = new EditFarm { frame = this.frame }; //Передача в presenter чтобы не был пустым
 
-                //editor.edita.Content = Convert.ToString(FileInfoView.SelectedIndex);
+
                 editor.txname.Text = FarmList[FileInfoView.SelectedIndex].NameFarm;
                 editor.txad.Text = FarmList[FileInfoView.SelectedIndex].AdressFarm;
 
 
-                //editor.edita.Content = Convert.ToString(FileInfoView.SelectedIndex);
+
                 Editor.index = FileInfoView.SelectedIndex;
                 EditFarm.EditFarmInfo.NumberFarm = FarmList[FileInfoView.SelectedIndex].NumberFarm;
                 EditFarm.EditFarmInfo.NameFarm = FarmList[FileInfoView.SelectedIndex].NameFarm;

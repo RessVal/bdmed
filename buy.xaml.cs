@@ -14,18 +14,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MedBd                    //Добавления для ITEMS
+namespace MedBd
 {
     /// <summary>
-    /// Логика взаимодействия для AddOrd.xaml
+    /// Логика взаимодействия для buy.xaml
     /// </summary>
-    public partial class AddOrd : Page
+    public partial class buy : Page
     {
-        public Frame frame;
-
-        public AddOrd()
+        public buy()
         {
             InitializeComponent();
+        }
+        public Frame frame;
+
+        public static class BuyInfo
+        {
+            public static int NumberItems { get; set; }
+
         }
 
         private void Add(object sender, RoutedEventArgs e)
@@ -41,9 +46,10 @@ namespace MedBd                    //Добавления для ITEMS
                     uniqueID = Orders.OrdersList[Orders.OrdersList.Count - 1].NumberOrd + 1;
                 }
                 string date = txdate.Text;
-                string log = txlog.Text;
+                string log = MainWindow.mainlogin;
                 string adr = txadr.Text;
-                int items = Convert.ToInt32(txitems.Text);
+                int items = BuyInfo.NumberItems;
+
 
                 string sqlExpression = "INSERT INTO dbo.Orders(NumberOrd, DateDelivery, Login, Adress , NumberItems) VALUES (" + uniqueID + ", '" + date + "', '" + log + "', '" + adr + "', '" + items + "')";
                 MessageBox.Show(sqlExpression);
@@ -95,9 +101,6 @@ namespace MedBd                    //Добавления для ITEMS
                 Orders boughtback = new Orders { frame = this.frame }; //Передача в presenter чтобы не был пустым
                 frame.Content = boughtback;
             }
-
         }
-
-
     }
 }

@@ -36,6 +36,15 @@ namespace MedBd
         public Category()
         {
             InitializeComponent();
+            if (!MainWindow.admin)
+            {
+
+
+                delete.Visibility = Visibility.Hidden;
+                add.Visibility = Visibility.Hidden;
+                edit.Visibility = Visibility.Hidden;
+            }
+
 
             CatList.Clear(); // Очистка окна вывода
 

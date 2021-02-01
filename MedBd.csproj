@@ -64,6 +64,9 @@
     <Compile Include="AddOrd.xaml.cs">
       <DependentUpon>AddOrd.xaml</DependentUpon>
     </Compile>
+    <Compile Include="buy.xaml.cs">
+      <DependentUpon>buy.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Category.xaml.cs">
       <DependentUpon>Category.xaml</DependentUpon>
     </Compile>
@@ -104,6 +107,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddOrd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="buy.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
