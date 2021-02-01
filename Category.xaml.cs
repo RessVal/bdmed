@@ -59,8 +59,7 @@ namespace MedBd
 
                 if (reader.HasRows) // если есть данные
                 {
-                    // выводим названия столбцов
-                    //Console.WriteLine("{0}\t{1}\t{2}", reader.GetName(0), reader.GetName(1), reader.GetName(2));
+
 
                     while (reader.Read()) // построчно считываем данные
                     {
@@ -84,12 +83,10 @@ namespace MedBd
             {
                 EditCat editor = new EditCat { frame = this.frame }; //Передача в presenter чтобы не был пустым
 
-                //editor.edita.Content = Convert.ToString(FileInfoView.SelectedIndex);
+
                 editor.txname.Text = CatList[FileInfoView.SelectedIndex].NameCat;
                 
 
-
-                //editor.edita.Content = Convert.ToString(FileInfoView.SelectedIndex);
                 EditCat.index = FileInfoView.SelectedIndex;
                 EditCat.EditCatInfo.NumberCat = CatList[FileInfoView.SelectedIndex].NumberCat;
                 EditCat.EditCatInfo.NameCat = CatList[FileInfoView.SelectedIndex].NameCat;

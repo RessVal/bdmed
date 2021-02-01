@@ -41,10 +41,12 @@ namespace MedBd
             {
                 string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=BDmed;Integrated Security=True";
                 int uniqueID = 0;
-                if (Orders.OrdersList.Count > 0)
+                if (MainWindow.OrdersList.Count > 0)
                 {
-                    uniqueID = Orders.OrdersList[Orders.OrdersList.Count - 1].NumberOrd + 1;
+                   uniqueID = MainWindow.OrdersList[MainWindow.OrdersList.Count - 1].NumberOrd + 1;
+
                 }
+                
                 string date = txdate.Text;
                 string log = MainWindow.mainlogin;
                 string adr = txadr.Text;
@@ -72,6 +74,8 @@ namespace MedBd
                     fileInfo.NumberItems = Convert.ToInt32(items);
 
                     Orders.OrdersList.Add(fileInfo);
+
+                    MainWindow.Metod();
 
                     a = true;
                 }
